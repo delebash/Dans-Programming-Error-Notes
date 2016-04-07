@@ -182,6 +182,8 @@ See [foundation issues](https://github.com/zurb/foundation-sites/issues/7386) or
 
 # FOUC #
 
+**Webpack**
+
 To help with FOUC for webpack use the extract-text-plugin to extract css into one file that you include in you index.html as normal
 
 Add to webpack.config.js
@@ -199,3 +201,25 @@ Add to webpack.config.js
         },
 
 NOTE: the style-loader and css-loader syntax has to be used instead of style!css
+
+**Foundation**
+
+Add these styles to style.css
+
+    .no-js .top-bar {
+    display: none;
+    }
+    
+    @media screen and (min-width: 40em) {
+    .no-js .top-bar {
+    display: block;
+    }
+    
+    .no-js .title-bar {
+    display: none;
+    }
+    }
+
+make sure html tag in index.html file includes this css class
+    
+    <html class="no-js" lang="en">
