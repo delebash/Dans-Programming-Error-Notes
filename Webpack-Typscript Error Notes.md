@@ -496,3 +496,49 @@ for Babel if not using awesome typescript if using ts-loader then you need to ad
      "useBabel": true // use when target ES6
       }
     }
+
+# Typings #
+
+This install typescript definition files use --ambient for libraries not in typings npm registry like jquery
+
+    typings install jquery --ambient --save
+
+--save flag save info to typings.json so you can just run 
+    typings install
+
+# Package.json #
+
+Normal npm stuff but to use **webpack-dev-server** see the script tags at the top
+
+**full package.json**
+
+	{
+	  "name": "starterapp",
+	  "version": "1.0.0",
+	  "description": "",
+	  "main": "webpack.config.js",
+	  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.js --inline --progress",
+    "build": "webpack --config webpack.config.js --progress --profile",
+    "prod": "webpack --config webpack.prod.config.js --progress --devtool source-map",
+    "test": "karma start",
+    "webdriver:update": "./node_modules/.bin/webdriver-manager update",
+    "webdriver:start": "./node_modules/.bin/webdriver-manager start",
+    "pree2e": "npm run webdriver:update -- --standalone",
+    "e2e": "./node_modules/.bin/protractor"
+	  },
+	  "author": "",
+	  "license": "ISC",
+	  "devDependencies": {
+		"autoprefixer": "^6.3.6",
+	    "awesome-typescript-loader": "^0.17.0-rc.5",
+	    "babel-core": "^6.7.4",
+	    "babel-loader": "^6.2.4",
+	    "babel-preset-es2015": "^6.6.0",
+	    "extract-text-webpack-plugin": "^1.0.1",
+	    "jquery": "^2.2.2",
+	    "typescript": "^1.8.9",
+	    "webpack": "^1.12.14",
+	    "webpack-dev-server": "^1.14.1"
+		  }
+		}
