@@ -410,60 +410,41 @@ for Babel if not using awesome typescript if using ts-loader then you need to ad
 
 **full webpack.config.js**
 
-	var path = require('path');
-	const ProvidePlugin = require('webpack/lib/ProvidePlugin');
-	const webpack = require("webpack");
-	const ExtractTextPlugin = require('extract-text-webpack-plugin');
-	const autoprefixer = require('autoprefixer')
-	
-	module.exports = {
-    entry: './src/app.ts',
-    output: {
-        path: path.join(__dirname, 'build'),
-        filename: 'bundle.js'
-    },
-    resolve: {
-        extensions: ['', '.js', '.ts']
-    },
-    // Adding jquery here makes it global for the app, no import needed
-    plugins: [
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery",
-            'window.jQuery': 'jquery'
-        }),
-        new ExtractTextPlugin('styles.css', {
-            allChunks: true
-        })
-    ],
-    devtool: 'source-map',
-    devServer: {
-        host: 'localhost',
-        port: 3000
-    },
-    module: {
-        resolve: {
-            modulesDirectories: ['node_modules']
-        },
-        loaders: [
-            {test: /\.ts$/, loader: 'awesome-typescript', exclude: [/\.(spec|e2e)\.ts$/, /node_modules/]},
-            { test: /\.html$/, loader: 'html' },
-            { test: /\.(png|gif|jpg)$/, loader: 'url', query: { limit: 8192 } },
-            { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url', query: { limit: 10000, mimetype: 'application/font-woff2' } },
-            { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url', query: { limit: 10000, mimetype: 'application/font-woff' } },
-            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file' },
-            { test: /\.scss$/, loader: 'style!css?sourceMap!postcss!sass?sourceMap'}
-        ]
-    },
-    postcss: [
-        autoprefixer({
-            browsers: ['last 2 versions']
-        })
-    ],
-    sassLoader: {
-	  includePaths: [path.resolve(__dirname, "./sass")]
-	    }
-	};
+		{
+	  "name": "starterapp",
+	  "version": "1.0.0",
+	  "description": "",
+	  "main": "webpack.config.js",
+	  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.js --inline --progress",
+    "build": "webpack --config webpack.config.js --progress --profile",
+    "prod": "webpack --config webpack.prod.config.js --progress --devtool source-map",
+    "test": "karma start",
+    "webdriver:update": "./node_modules/.bin/webdriver-manager update",
+    "webdriver:start": "./node_modules/.bin/webdriver-manager start",
+    "pree2e": "npm run webdriver:update -- --standalone",
+    "e2e": "./node_modules/.bin/protractor"
+	  },
+	  "author": "",
+	  "license": "ISC",
+	  "devDependencies": {
+    "babel-core": "^6.7.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5", ,
+    "html-loader": "^0.4.3",
+    "jquery": "^2.2.2",
+    "node-sass": "^3.4.2",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+	  }
+	}
+
 
 
 
