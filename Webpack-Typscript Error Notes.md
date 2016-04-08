@@ -561,4 +561,6 @@ to be run through server via `npm run dev`.  Need to research why.
 
 Output to ES5 works but not ES6 unless you use that guys aureliaplugin2 and weback 2.0 and webpack-dev-server 2.0
 
-Targeting ES6 also cause d.ts errors but again the 2.0 version and new aureliaplugin2 fix this I think it does in the other template. TemplateAureliaTSWebpack this uses 2.0 and new plugin
+Targeting ES6 also cause d.ts errors but again the 2.0 version and new aureliaplugin2 fix this I think it does in the other template. TemplateAureliaTSWebpack this uses 2.0 and new plugin.
+
+Targeting ES6 and module commonJs works with many d.ts errors but aurelia loads successfully.  Best to stick with ES5 until wepback 2.0 and new plugin officially supported.  Unless I can use it to import foundation.  Still do not know how bootstrap works as I do not see any bootstrap import in the main.js
