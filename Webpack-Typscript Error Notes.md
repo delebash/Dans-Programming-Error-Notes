@@ -10,7 +10,6 @@ no typescript definition file is installed, once installed  and red goes away an
 This error shows up in the browser debugger console when you use the import statement without a module loader such as webpack.
 
 The tsc compiler will run successfully but the browser does not know how to import modules so it will give this error.
- 
 
 
 **Uncaught TypeError: jquery_1.default is not a function**
@@ -22,6 +21,12 @@ This happens because you are using the ES6 syntax `import $ from 'jquery'` state
 
 2)Or use babel to transform the code. 
 In either case the code is transpiled to ES5
+
+**Cannot find module**
+
+http://jssoup.blogspot.com/2015/06/how-to-use-external-modulelibrary-in.html.
+
+For libs like foundation where the d.ts file is wrong and not giving correct info to locate //lib or module // Although there were errors, the greeter.js file is still created. // You can use TypeScript even if there are errors in your code. But in this case, // TypeScript is warning that your code will likely not run as expected.
 
 
 **Module parse failed: Unexpected token You may need an appropriate loader to handle this file type.**
@@ -45,6 +50,21 @@ This means a library is expecting.
 Even though bootstrap works by just using import $ from 'jquery'
 Foundation expects jQuery as a global variable and you have to expose it by using the methods below
 
+**Module build failed: Error: Cannot resolve 'file' or 'directory' ./greeter**
+
+Check the extension make sure all have a dot as in `'.ts' not 'ts'`
+
+Example is wrong should be .ts
+   	
+	resolve: {
+        extensions: ['', '.js','ts']
+    },
+
+**Module '"jquery"' has no default export**
+
+This is typescript complaining but it still builds ok and you can disable this warning by adding in tsconfig.json
+
+"allowSyntheticDefaultImports": true
 
 #Importing files and modules syntax#
 
@@ -223,3 +243,256 @@ Add these styles to style.css
 make sure html tag in index.html file includes this css class
     
     <html class="no-js" lang="en">
+
+
+# TypeScript #
+
+Using Awsome-Typescript this works by setting useBabel true you do not
+need to add a test for babel in webpack.config.js
+
+Also you can either specify preset 2015 here or in babel.rc in you root
+
+    {
+      "version": "1.8.9",
+      "compileOnSave": false,
+      "compilerOptions": {
+    "rootDir": "usingES6/",
+    "sourceMap": true,
+    "target": "es2015",
+    "declaration": false,
+    "noImplicitAny": false,
+    "noResolve": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+      },
+      "filesGlob": [
+    //"./src/**/*.ts",
+    "./usingES6/**/*.ts",
+    "./test/**/*.ts",
+    "./typings/browser.d.ts",
+    "./custom_typings/**/*.d.ts",
+    "./node_modules/aurelia-*/**/*.d.ts"
+      ],
+      "exclude": [
+    "node_modules",
+    "typings/main",
+    "typings/main.d.ts"
+      ],
+      "atom": {
+    "rewriteTsconfig": false
+      },
+      "awesomeTypescriptLoaderOptions": {
+     "useBabel": true // use when target ES6
+      }
+    }
+
+
+.babelrc
+
+    {
+    "presets": ["es2015"]
+    }
+
+
+# wepackconfig.js #
+
+**dirname**
+
+This is a node default that means whatever file you are operating on get its directory so in this case it is the directory of the .webconfig.js
+then dirname = "./".  Another example if you had dirname,js then it would find the directory of the js files so if js files are in js/src then dirname would = "js/src"
+
+**path**
+
+This allows you to join a directory with a name to create a new directory
+in this case is is "./build"
+
+**output**
+
+The output of the path + file
+
+**resolve extensions**
+
+not sure but you need `['' ,'.js','.ts']`
+
+    var path = require('path');
+    const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+    const webpack = require("webpack");
+    const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+
+	module.exports = {
+    entry: './src/app.ts',
+    output: {
+        path: path.join(__dirname, 'build'),
+        filename: 'bundle.js'
+    },
+    resolve: {
+        extensions: ['', '.js', '.ts']
+    },
+
+    // Adding jquery here makes it global for the app, no import needed
+    plugins: [
+        // new webpack.ProvidePlugin({
+        //     $: "jquery",
+        //     jQuery: "jquery",
+        //     'window.jQuery': 'jquery'
+        // }),
+        // new ExtractTextPlugin('styles.css', {
+        //     allChunks: true
+        // })
+    ],
+    devtool: 'source-map',
+    devServer: {
+        host: 'localhost',
+        port: 3000
+    },
+    module: {
+        resolve: {
+            modulesDirectories: ['node_modules']
+        },
+
+**Loaders**
+
+Need one for each file type and you have to install each one such as `npm install html-loader --save-dev`
+
+You can use an array of loaders say for css such as `["style-loader", "css-loader", "sass-loader"]` or pipe them such as `"style!css!sass"` they mean the same.
+
+**Sass**
+
+see example loader for using sass there is a specific order, sass needs to run to create css and then css and use **postcss** to add **autoprefixer**.
+
+Various ways to specify add an additional directory but here is one
+
+	sassLoader: {
+      includePaths: [path.resolve(__dirname, "./sass")]
+    }
+
+ break-line
+
+       loaders: [
+             { test: /\.scss$/, loader: 'style!css?sourceMap!postcss!sass?sourceMap'}
+        ]
+    },
+ 	postcss: [
+    autoprefixer({
+      browsers: ['last 2 versions']
+    })
+	]
+	};
+	};
+
+**css**
+
+if you use **ExtractTextPlugin** then a real css file is output in the build directory styles.css and you include this in your index.html per normal
+
+
+**sourcemaps**
+enable in webpack.config.js as seen in example config by setting
+
+    "devtool": "source-map"
+
+enable in tsconfig as well
+
+    "sourceMap": true
+
+
+
+**misc**
+
+This test all files in root except node_moduels
+for Babel if not using awesome typescript if using ts-loader then you need to add babel test
+
+    { test: /\.js$/, loader: 'babel', exclude: /node_modules/,   query: {presets: ['es2015']}}
+
+
+**full webpack.config.js**
+
+	var path = require('path');
+	const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+	const webpack = require("webpack");
+	const ExtractTextPlugin = require('extract-text-webpack-plugin');
+	const autoprefixer = require('autoprefixer')
+	
+	module.exports = {
+    entry: './src/app.ts',
+    output: {
+        path: path.join(__dirname, 'build'),
+        filename: 'bundle.js'
+    },
+    resolve: {
+        extensions: ['', '.js', '.ts']
+    },
+    // Adding jquery here makes it global for the app, no import needed
+    plugins: [
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            'window.jQuery': 'jquery'
+        }),
+        new ExtractTextPlugin('styles.css', {
+            allChunks: true
+        })
+    ],
+    devtool: 'source-map',
+    devServer: {
+        host: 'localhost',
+        port: 3000
+    },
+    module: {
+        resolve: {
+            modulesDirectories: ['node_modules']
+        },
+        loaders: [
+            {test: /\.ts$/, loader: 'awesome-typescript', exclude: [/\.(spec|e2e)\.ts$/, /node_modules/]},
+            { test: /\.html$/, loader: 'html' },
+            { test: /\.(png|gif|jpg)$/, loader: 'url', query: { limit: 8192 } },
+            { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url', query: { limit: 10000, mimetype: 'application/font-woff2' } },
+            { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url', query: { limit: 10000, mimetype: 'application/font-woff' } },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file' },
+            { test: /\.scss$/, loader: 'style!css?sourceMap!postcss!sass?sourceMap'}
+        ]
+    },
+    postcss: [
+        autoprefixer({
+            browsers: ['last 2 versions']
+        })
+    ],
+    sassLoader: {
+	  includePaths: [path.resolve(__dirname, "./sass")]
+	    }
+	};
+
+
+
+
+
+**full ts.config**
+
+       {
+      "version": "1.8.9",
+      "compileOnSave": false,
+      "compilerOptions": {
+    "rootDir": "src/",
+    "sourceMap": true,
+    "target": "es2015",
+    "declaration": false,
+    "noImplicitAny": false,
+    "noResolve": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true
+      },
+      "filesGlob": [
+    "./src/**/*.ts",
+    "./typings/browser.d.ts"
+      ],
+      "awesomeTypescriptLoaderOptions": {
+     "useBabel": true // use when target ES6
+      }
+    }
