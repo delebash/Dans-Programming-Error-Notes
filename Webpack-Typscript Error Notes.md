@@ -22,8 +22,28 @@ This happens because you are using the ES6 syntax `import $ from 'jquery'` state
 2)Or use babel to transform the code. 
 In either case the code is transpiled to ES5
 
+
+**Module build failed: Error: Final loader didn't return a Buffer or String**
+
+Check you tsconfig for typo's such as missing comma, webstorm my not show 
+an error so you have to manually look
+
+
 **Cannot find module**
 
+For foundation change last line 
+
+FROM:
+
+    declare module "Foundation" {
+    export = Foundation;
+    } 
+TO:
+
+    declare module "foundation-sites" {
+      export default Foundation;
+    }
+    
 http://jssoup.blogspot.com/2015/06/how-to-use-external-modulelibrary-in.html.
 
 For libs like foundation where the d.ts file is wrong and not giving correct info to locate //lib or module // Although there were errors, the greeter.js file is still created. // You can use TypeScript even if there are errors in your code. But in this case, // TypeScript is warning that your code will likely not run as expected.
@@ -53,7 +73,7 @@ Foundation expects jQuery as a global variable and you have to expose it by usin
 **Module build failed: Error: Cannot resolve 'file' or 'directory' ./greeter**
 
 Check the extension make sure all have a dot as in `'.ts' not 'ts'`
-
+Or that the extension is missing such as .ts is not listed
 Example is wrong should be .ts
    	
 	resolve: {
@@ -70,6 +90,12 @@ This is typescript complaining but it still builds ok and you can disable this w
 
 Check package.json for errors such as extra comma just make sure phpstorm says there are no errors. package.json may not be underlined in red but look to the right for a red circle indicating errors typos in file.
 I had **"file-loader, ,"**
+
+**is not a PostCSS plugin
+ at Processor.normalize (F:\Development\GitHub\delebash\Aurelia\Templates\Webpack\AureliaTSWebPackES6\node_modules\postcss\lib\processor.js:60:23)**
+
+You have installed postcss instead of postcss-loader.  Need to uninstall postcss and install postcss-loader 
+ 
 
 
 #Importing files and modules syntax#
@@ -394,6 +420,14 @@ Various ways to specify add an additional directory but here is one
 
 if you use **ExtractTextPlugin** then a real css file is output in the build directory styles.css and you include this in your index.html per normal
 
+Needs to be in this format not ! format
+
+    // Extract CSS during build
+        {
+            test: /\.css$/,
+            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+        },
+
 
 **sourcemaps**
 enable in webpack.config.js as seen in example config by setting
@@ -512,6 +546,26 @@ This install typescript definition files use --ambient for libraries not in typi
 --save flag save info to typings.json so you can just run 
     typings install
 
+**Foundation**
+You need to change the export when using ES6
+
+From:
+    
+    declare module "Foundation" {
+    export = Foundation;
+    }
+
+To:
+
+    declare module "Foundation" {
+      export default Foundation;;
+    }
+
+See:
+
+http://www.jbrantly.com/es6-modules-with-typescript-and-webpack/
+
+
 # Package.json #
 
 Normal npm stuff but to use **webpack-dev-server** see the script tags at the top
@@ -545,6 +599,7 @@ Normal npm stuff but to use **webpack-dev-server** see the script tags at the to
     "html-loader": "^0.4.3",
     "jquery": "^2.2.2",
     "node-sass": "^3.4.2",
+    "postcss-loader": "^0.8.2",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
@@ -564,3 +619,8 @@ Output to ES5 works but not ES6 unless you use that guys aureliaplugin2 and weba
 Targeting ES6 also cause d.ts errors but again the 2.0 version and new aureliaplugin2 fix this I think it does in the other template. TemplateAureliaTSWebpack this uses 2.0 and new plugin.
 
 Targeting ES6 and module commonJs works with many d.ts errors but aurelia loads successfully.  Best to stick with ES5 until wepback 2.0 and new plugin officially supported.  Unless I can use it to import foundation.  Still do not know how bootstrap works as I do not see any bootstrap import in the main.js
+
+**Wepback watch or hot reload and Phpstorm**
+Saving a file in phpstorm does not always trigger a watch event
+
+Webpack watch doesn't work if the file is not saved directly. Please try turning 'Safe write' option ( Settings | Appearance & Behavior | System Settings | Use "safe write" (save changes to temporary file first)) off
