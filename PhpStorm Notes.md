@@ -2,10 +2,10 @@
 
 In External Tools
 
-for cmd it would be:
+You have to use the git-bash.exe as just using bash.exe does not work it the process runs but the window does not display
 
-  Program: cmd
-  Parameters: /C start
+  Program: F:\Program Files\Git\git-bash.exe
+  Parameters: none
   Working directory: $FileDir$
 
 Then Make a Keyboard shortcut
