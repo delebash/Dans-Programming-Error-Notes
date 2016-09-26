@@ -16,6 +16,8 @@ The command below on electron-rebuild site does not work use above
 ./node_modules/.bin/electron-rebuild
 
 Also if the node_modules keeps being added in case you need to delete it
+Restart PhpStorm
 kill process Awesome...
+kill any bash processes
 
-Just for good measure check to make sure you don't have excess bash processes running
+Maybe just try closing PhpStorms terminal
