@@ -21,3 +21,5 @@ kill process Awesome...
 kill any bash processes
 
 Maybe just try closing PhpStorms terminal
+
+NEVER MIND just restart pc maybe later I can figure out which process is still running
