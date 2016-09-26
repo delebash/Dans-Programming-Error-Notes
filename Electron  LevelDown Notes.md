@@ -113,3 +113,29 @@ This way all the info is under the src folder but It might be better to leave it
       }
     }
 
+Other Package with pouchbd
+
+    {
+      "name": "demoelectronaureliamongodb",
+      "version": "1.0.0",
+      "bundle": "com.democode.demoelectronaureliamongodb",
+      "description": "Thick client demo app showing Electron, ES6, Aurelia, and MongoDB working together.",
+      "repository": {
+    "type": "git",
+    "url": ""
+      },
+      "keywords": [
+    "aurelia",
+    "electron",
+    "es6",
+    "mongodb"
+      ],
+      "author": "Karl R. Shifflett",
+      "homepage": "http://karlshifflett.wordpress.com",
+      "license": "MIT",
+      "electron": "^1.4.1",
+      "electron-rebuild": "^1.2.1",
+      "dependencies": {
+    "pouchdb": "^6.0.5"
+      }
+    }
