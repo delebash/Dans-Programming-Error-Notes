@@ -30,3 +30,9 @@ With
     const electron = require('electron');
     const app = electron.app;
     Menu = electron.Menu;
+
+
+# NOTE: #
+
+As of now Phpstorm does not handle debugging for when electron renders
+You can set it up according to there docs but no breakpoints are hit.  The breakpoints before render are hit.
