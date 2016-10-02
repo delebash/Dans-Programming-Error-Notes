@@ -8,7 +8,29 @@ Also for help
 
     ./node_modules/.bin/electron-rebuild -h
 
-**Package.json for Electron Aurelia LevelDbPouch Example**
+# Manual Build in case electron-rebuild fails which is for me now #
+
+Steps to re-build leveldown or any module for electron:
+ 
+    cd node_modules/leveldown
+    node-gyp rebuild --target=1.4.2 --arch=x64 --dist-url=https://atom.io/download/atom-shell
+
+The target is the version of electron you are using
+You need to cd into the module you want to build
+as in `cd /node_modules/levledown` then run the above command adjusted for the version of electron installed
+
+References
+
+[https://github.com/nodejs/node-gyp](https://github.com/nodejs/node-gyp)
+
+[https://github.com/electron/electron/blob/master/docs/tutorial/using-native-node-modules.md](https://github.com/electron/electron/blob/master/docs/tutorial/using-native-node-modules.md)
+
+[https://github.com/nodejs/node-gyp](https://github.com/nodejs/node-gyp)
+
+**End Build Instructions**
+
+
+**Package.json for Electron Aurelia LevelDownPouch Example**
 
 
 In the package.json you can specify where you want the jspm_modules to be installed as in below
