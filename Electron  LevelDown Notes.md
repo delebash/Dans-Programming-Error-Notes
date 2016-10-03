@@ -193,3 +193,7 @@ Other Package with pouchbd
     "pouchdb": "^6.0.5"
       }
     }
+
+
+NOTE NO NEED TO HAVE:
+package.json in src folder electron, electron-packager can be --save-dev and pouchdb can be --save in the main package.json
