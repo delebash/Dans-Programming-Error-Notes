@@ -1,12 +1,46 @@
 # You Have to re-compile LevelDown (part of LevelDB) for Electron #
 
-The below command works to recompile leveldown
+The below command works to recompile leveldown using electron-rebuild.  
 
+**For Aurelia you may have to install it from inside the src folder using the package.json below, instead of the root node_modules folder**
+
+    npm install electron-rebuild --save-dev
     ./node_modules/.bin/electron-rebuild -w leveldown -p
 
 Also for help
 
     ./node_modules/.bin/electron-rebuild -h
+
+**In Aurelia** you have to have another package.json in the source folder with these contents.  Maybe replace electron with electron-prebuilt although using just electron is the new way.
+
+    {
+      "name": "demoelectronaureliamongodb",
+      "version": "1.0.0",
+      "bundle": "com.democode.demoelectronaureliamongodb",
+      "description": "Thick client demo app showing Electron, ES6, Aurelia, and MongoDB working together.",
+      "repository": {
+    "type": "git",
+    "url": ""
+      },
+      "keywords": [
+    "aurelia",
+    "electron",
+    "es6",
+    "mongodb"
+      ],
+      "author": "Karl R. Shifflett",
+      "homepage": "http://karlshifflett.wordpress.com",
+      "license": "MIT",
+      "devDependencies": {
+    "electron": "^1.4.1",
+    "electron-rebuild": "^1.2.1"
+      },
+      "dependencies": {
+    "pouchdb": "^6.0.5"
+      }
+    }
+    
+
 
 # Manual Build in case electron-rebuild fails which is for me now #
 
@@ -15,8 +49,7 @@ Steps to re-build leveldown or any module for electron:
     cd node_modules/leveldown
     node-gyp rebuild --target=1.4.2 --arch=x64 --dist-url=https://atom.io/download/atom-shell
 
-The target is the version of electron you are using
-You need to cd into the module you want to build
+The target is the version of electron you are using. You need to update the target to your current version of electron. Then cd into the module you want to build
 as in `cd /node_modules/levledown` then run the above command adjusted for the version of electron installed
 
 References
@@ -35,7 +68,6 @@ References
 
 In the package.json you can specify where you want the jspm_modules to be installed as in below
 
-    "jspm": {
     "directories": {
       "baseURL": "src"
     },
