@@ -86,3 +86,22 @@ Full Package Example
 If you get cannot find app when running electron . but it runs fine if your npm start script which just runs electron .   Check index.js and make sure that loadUrl is changed to loadURL
 
 Also make sure you are in the right directory example if you try to run it in the src folder instead of main you will get this error.
+
+# PACKAGER: #
+    npm install electron-packager --save-dev
+
+This is an npm script that you run by `npm run build-win`
+
+Update --version to the version of electron you are using
+
+
+     ` "build-win": "electron-packager . 'ElectronAureliaPouchDB' --platform=win32 --arch=x64 --version=1.4.2 --overwrite --out ./build/win"`
+ 
+
+Showing how the scripts in package.json looks like.
+
+      "scripts": {
+    "start": "electron .",
+    "build-mac": "electron-packager . 'ElectronAureliaPouchDB' --platform=darwin --arch=x64 --version=1.4.2 --overwrite --out ./build/mac",
+    "build-win": "electron-packager . 'ElectronAureliaPouchDB' --platform=win32 --arch=x64 --version=1.4.2 --overwrite --out ./build/win"
+      },
