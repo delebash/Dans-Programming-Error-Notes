@@ -15,6 +15,7 @@ Set below parameters
 Then Make a Keyboard shortcut
 
 Goto `Settings/Keymap` search for what ever you called it.  It should be under External Tools
+Keymap shortcurt = cntrol + windows
 
 # To Enable Copy and Paste in git--bash #
 
