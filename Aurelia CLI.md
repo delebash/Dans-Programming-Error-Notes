@@ -1,0 +1,257 @@
+## Sample Config ##
+
+
+**Note:**
+In the below you can see how jquery, text, underscore, bootstrap are installed
+
+You can install via npm jquery, text, and underscore via npm and just include them as 
+"text",
+"underscore",
+"jquery"
+
+**To install text or anything from github it is just repo/name#version**
+
+    npm i requirejs/text#latest --save
+
+
+Require has to be prepended as in 
+    
+       "name": "vendor-bundle.js",
+    "prepend": [
+      "node_modules/bluebird/js/browser/bluebird.core.js",
+      "node_modules/requirejs/require.js"
+    ]
+
+Instead of manually importing via custom import
+
+
+    {
+    "name": "aurelia-custom-skeleton",
+    "type": "project:application",
+    "platform": {
+    "id": "web",
+    "displayName": "Web",
+    "output": "scripts",
+    "index": "index.html"
+    },
+    "run": {
+    "basePath": "dist"
+    },
+    "transpiler": {
+    "id": "typescript",
+    "displayName": "TypeScript",
+    "fileExtension": ".ts",
+    "dtsSource": [
+    "./typings/**/*.d.ts",
+    "./typings_custom/**/*.d.ts"
+    ],
+    "source": "src/**/*.ts"
+    },
+    "markupProcessor": {
+    "id": "none",
+    "displayName": "None",
+    "fileExtension": ".html",
+    "source": "src/**/*.html"
+    },
+    "cssProcessor": {
+    "id": "less",
+    "displayName": "Less",
+    "fileExtension": ".less",
+    "source": "src/assets/less/template.less",
+    "filename": "app.css"
+    },
+    "editor": {
+    "id": "webstorm",
+    "displayName": "WebStorm"
+    },
+    "unitTestRunner": {
+    "id": "karma",
+    "displayName": "Karma",
+    "source": "test/unit/**/*.ts"
+    },
+    "minifyCss": {
+    "output": "css",
+    "sources": ["src/assets/css/base.css", "src/assets/css/app.css"],
+    "filename": "styles.min.css"
+    },
+    "copyCss": {
+    "output": "src/assets/css",
+    "filename": "base.css",
+    "sources": [
+    "src/assets/bootswatch.paper/fonts.css",
+    "node_modules/font-awesome/css/*.min.css",
+    "node_modules/animate.css/animate.min.css",
+    "src/assets/bootswatch.paper/bootswatch.paper.min.css",
+    "node_modules/aurelia-editables/dist/css/*.css"
+    ]
+    },
+    "copyFiles": [
+    {
+    "name": "copyFonts",
+    "output": "fonts",
+    "sources": [
+    "node_modules/font-awesome/fonts/*",
+    "node_modules/bootstrap/dist/fonts/*",
+    "src/assets/bootswatch.paper/fonts/*"
+    ]
+    }
+    ],
+    "dist": {
+    "output": "dist",
+    "sources": [
+    "./css/**/*",
+    "./data/**/*",
+    "./fonts/**/*",
+    "./locales/**/*",
+    "./scripts/app.bundle.js",
+    "./index.html"
+    ]
+    },
+    "paths": {
+    "root": "src",
+    "resources": "src/resources",
+    "elements": "src/resources/elements",
+    "attributes": "src/resources/attributes",
+    "valueConverters": "src/resources/value-converters",
+    "bindingBehaviors": "src/resources/binding-behaviors"
+    },
+    "testFramework": {
+    "id": "jasmine",
+    "displayName": "Jasmine"
+    },
+    "build": {
+    "targets": [
+    {
+    "id": "web",
+    "displayName": "Web",
+    "output": "scripts",
+    "index": "index.html"
+    }
+    ],
+    "loader": {
+    "type": "require",
+    "configTarget": "app.bundle.js",
+    "includeBundleMetadataInConfig": "auto",
+    "plugins": [
+    {
+    "name": "text",
+    "extensions": [
+    ".html",
+    ".css"
+    ],
+    "stub": true
+    }
+    ]
+    },
+    "options": {
+    "minify": "stage & prod",
+    "sourcemaps": "dev & stage"
+    },
+    "bundles": [
+    {
+    "name": "app.bundle.js",
+    "prepend": [
+    "node_modules/bluebird/js/browser/bluebird.core.js",
+    "node_modules/interact.js/dist/interact.min.js",
+    "scripts/require.js"
+    ],
+    "source": [
+    "[**/*.js]",
+    "**/*.{css,html}"
+    ],
+    "dependencies": [
+    "aurelia-binding",
+    "aurelia-bootstrapper",
+    "aurelia-dependency-injection",
+    "aurelia-event-aggregator",
+    "aurelia-framework",
+    "aurelia-history",
+    "aurelia-history-browser",
+    "aurelia-http-client",
+    "aurelia-loader",
+    "aurelia-loader-default",
+    "aurelia-logging",
+    "aurelia-logging-console",
+    "aurelia-metadata",
+    "aurelia-pal",
+    "aurelia-pal-browser",
+    "aurelia-path",
+    "aurelia-polyfills",
+    "aurelia-route-recognizer",
+    "aurelia-router",
+    "aurelia-task-queue",
+    "aurelia-templating",
+    "aurelia-templating-binding",
+    {
+    "name": "text",
+    "path": "../scripts/text"
+    },
+    {
+    "name": "aurelia-templating-resources",
+    "path": "../node_modules/aurelia-templating-resources/dist/amd",
+    "main": "aurelia-templating-resources"
+    },
+    {
+    "name": "aurelia-templating-router",
+    "path": "../node_modules/aurelia-templating-router/dist/amd",
+    "main": "aurelia-templating-router"
+    },
+    {
+    "name": "aurelia-testing",
+    "path": "../node_modules/aurelia-testing/dist/amd",
+    "main": "aurelia-testing",
+    "env": "dev"
+    },
+    {
+    "name": "aurelia-validation",
+    "path": "../node_modules/aurelia-validation/dist/amd",
+    "main": "aurelia-validation"
+    },
+    {
+    "name": "i18next",
+    "path": "../node_modules/i18next/dist/umd",
+    "main": "i18next"
+    },
+    {
+    "name": "aurelia-i18n",
+    "path": "../node_modules/aurelia-i18n/dist/amd",
+    "main": "aurelia-i18n"
+    },
+    {
+    "name": "i18next-xhr-backend",
+    "path": "../node_modules/i18next-xhr-backend/dist/umd",
+    "main": "i18nextXHRBackend"
+    },
+    {
+    "name": "aurelia-ui-virtualization",
+    "path": "../node_modules/aurelia-ui-virtualization/dist/amd",
+    "main": "aurelia-ui-virtualization"
+    },
+    {
+    "name": "aurelia-editables",
+    "path": "../node_modules/aurelia-editables/dist/amd",
+    "main": "aurelia-editables",
+    "resources": ["**/*.html"]
+    },
+    {
+    "name": "jquery",
+    "path": "../node_modules/jquery/dist",
+    "main": "jquery.min"
+    },
+    {
+    "name": "underscore",
+    "path": "../node_modules/underscore",
+    "main": "underscore-min"
+    },
+    {
+    "name": "bootstrap",
+    "path": "../node_modules/bootstrap/dist",
+    "main": "js/bootstrap.min",
+    "deps": ["jquery"],
+    "exports": "$"
+    }
+    ]
+    }
+    ]
+    }
+    }
