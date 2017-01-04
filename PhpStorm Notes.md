@@ -47,4 +47,11 @@ To paste into git-bash right click
 
 To copy from git-bash select text and single right click or enter
 
-To copy text within git-bash and put it in current prompt select text and double right click  
+To copy text within git-bash and put it in current prompt select text and double right click 
+
+## File Types ##
+
+Markdown
+goto  Settings > File Types > Find Markdown in the Registered Patterns window delete .md
+
+Then got an md file in your Project Window, right click and choose Fil Association and the Default Program
