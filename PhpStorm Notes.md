@@ -1,4 +1,9 @@
-# Open Command Prompt Here #
+## Cmder Open Here ##
+**Install** `.\cmder.exe /REGISTER ALL` **Remove** `.\cmder.exe /REGISTER ALL`
+
+
+
+# Phpstrom Open Command Prompt Here #
 
 In External Tools
 

@@ -13,7 +13,14 @@ You can install via npm jquery, text, and underscore via npm and just include th
 
     npm i requirejs/text#latest --save
 
+**To Require css in your pages uses the text plugin**
 
+**Set stub = false** for text plugin in aurelia.json in order to use in html to require css files
+
+
+else you get error
+vendor-bundle.js:4831 Uncaught TypeError: plugin.load is not a function
+ 
 Require has to be prepended as in 
     
        "name": "vendor-bundle.js",
