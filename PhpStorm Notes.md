@@ -1,6 +1,9 @@
 ## Cmder Open Here ##
 **Install** `.\cmder.exe /REGISTER ALL` **Remove** `.\cmder.exe /REGISTER ALL`
 
+## Heap memory sizes ##
+
+1024 MB (1 GB), 2048 MB (2 GB), 4096 MB (4 GB), 8192 MB (8 GB).
 
 ## Set Phpstorm Terminal to use cmder ##
 [See](https://github.com/cmderdev/cmder/issues/282#issuecomment-219684282) 
