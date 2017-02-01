@@ -14,7 +14,9 @@ You will not hit break point if your sourcemaps are not configured correctly
 
 **Make sure the source path is correct in the gulp write sourcmaps**
 
-In Aurelia Navigation Skeleton the sourceRoot: '/src' is wrong make sure it points to your source folder replace with sourceRoot: '../src'
+In Aurelia Navigation Skeleton tasks/build the     .pipe(sourcemaps.write('.', {includeContent: false, sourceRoot: '../src'}))
+
+ sourceRoot: '/src' is wrong make sure it points to your source folder replace with sourceRoot: '../src'
 For whatever reason debugging only works in sourceRoot is a relative path to your output folder
  
 
