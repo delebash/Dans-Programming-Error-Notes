@@ -15,8 +15,6 @@
 
 ![](http://i.imgur.com/lOMtWhv.png)
 
-
-
 # Phpstrom Open Command Prompt Here #
 
 In External Tools
