@@ -13,7 +13,7 @@ branch = master another branch that the repository has.
     git push -f https://github.com/delebash/ElectronAureliaPouchSyncfusion.git master
 
 
-## .gitignore config files that you want an initial copy file on the remote repository but after that no changes should be committed  ##
+## .gitignore to ingore config files that you want an initial copy on the remote repository but after that no changes should be committed  ##
 
 1. commit file
 1. add to .gitignore
@@ -21,3 +21,5 @@ branch = master another branch that the repository has.
 1. git commit -m "Removed file2"
 
 verify that changes are no longer tracked
+
+https://jlordiales.wordpress.com/2012/12/28/when-git-ignores-your-gitignore/
