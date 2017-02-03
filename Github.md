@@ -17,8 +17,7 @@ branch = master another branch that the repository has.
 
     1. commit file
     1. add to .gitignore src/config/dreamfactory-config.js
-    1. git rm --cached src/config/dreamfactory-config.js
-    1. git commit -m "Removed src/config/dreamfactory-config.js"
+    2. git update-index --assume-unchanged src/config/dreamfactory-config.js
 
 verify that changes are no longer tracked
 
