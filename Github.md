@@ -15,10 +15,10 @@ branch = master another branch that the repository has.
 
 ## .gitignore to ingore config files that you want an initial copy on the remote repository but after that no changes should be committed  ##
 
-1. commit file
-1. add to .gitignore
-1. git rm --cached file2
-1. git commit -m "Removed file2"
+    1. commit file
+    1. add to .gitignore src/config/dreamfactory-config.js
+    1. git rm --cached src/config/dreamfactory-config.js
+    1. git commit -m "Removed src/config/dreamfactory-config.js"
 
 verify that changes are no longer tracked
 
