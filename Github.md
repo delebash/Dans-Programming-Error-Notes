@@ -21,4 +21,8 @@ branch = master another branch that the repository has.
 
 verify that changes are no longer tracked
 
+To track changes again
+
+    git update-index --no-assume-unchanged src/config/dreamfactory-config.js
+
 https://jlordiales.wordpress.com/2012/12/28/when-git-ignores-your-gitignore/
