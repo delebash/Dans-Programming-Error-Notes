@@ -49,8 +49,14 @@ Generator
 
 Async
 
+    // fake asynchronise operation
+    function fakeop(ms) {
+      return new Promise(r => setTimeout(r, ms));
+    }
+
+
     async function foo() {
-      await wait(500);
+      await fakeop(500);
       throw Error('bar');
     }
     
