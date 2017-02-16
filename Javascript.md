@@ -1,4 +1,62 @@
-To use ES6 generators you need to 
+Async/Await
+
+    npm install babel-preset-env  --save-dev
+
+
+**For evergreen browsers that already support generators:**
+
+To use asnyc await you need to have es6 generators working -- for evergreen browsers generators are working
+
+You cannot use presets because it tries to convert generators which then require the regeneratorRuntime.
+
+
+Instead we just need to add our plugins manually
+
+	"plugins": [
+    "syntax-flow",
+    "transform-decorators-legacy",
+    "transform-flow-strip-types",
+    "transform-async-to-generator",
+
+    "transform-object-rest-spread",
+    "transform-async-generator-functions",
+    "transform-class-properties",
+    "transform-export-extensions",
+
+    "transform-es2015-arrow-functions",
+    "transform-es2015-block-scoped-functions",
+    "transform-es2015-block-scoping",
+    "transform-es2015-classes",
+    "transform-es2015-computed-properties",
+    "transform-es2015-destructuring",
+    "transform-es2015-duplicate-keys",
+    "transform-es2015-for-of",
+    "transform-es2015-function-name",
+    "transform-es2015-literals",
+    "transform-es2015-modules-commonjs",
+    "transform-es2015-object-super",
+    "transform-es2015-parameters",
+    "transform-es2015-shorthand-properties",
+    "transform-es2015-spread",
+    "transform-es2015-sticky-regex",
+    "transform-es2015-template-literals",
+    "transform-es2015-typeof-symbol",
+    "transform-es2015-unicode-regex"
+	]
+
+**For Older browsers:** needing a polyfill then we can use presets and **install generator polyfill** per instructions below
+    
+	"presets": [
+    ["env", {
+      "targets": {
+    "browsers": ["last 2 versions"]
+      }
+    }],
+    "stage-1"
+      ],
+
+
+**Generator polyfill** for browsers that do not support generators
 
 Install as run-time dependency
 
@@ -16,21 +74,6 @@ For aurelia-cli you need to add to **aurelia.json**
             "path": "../node_modules/regenerator-runtime",
             "main": "runtime-module"
           },
-
-To use asnyc await you need to have es6 generators working according to above instructions then
-
-    npm install babel-preset-env  --save-dev
-
-.babelrc presets
-
-      "presets": [
-    ["env", {
-      "targets": {
-    "browsers": ["last 2 versions"]
-      }
-    }],
-    "stage-1"
-      ],
 
 
 Examples:
@@ -72,3 +115,39 @@ Async
     console.log('fetch failed', err);
       }
     }
+
+
+
+
+welcome.js
+
+      submit() {
+     // let genObj = this.genFunc();
+     //genObj.next()
+      this.hello()
+      }
+    
+      canDeactivate() {
+    if (this.fullName !== this.previousValue) {
+      return confirm('Are you sure you want to leave?');
+    }
+      }
+    
+      // // fake asynchronise operation
+      fakeop(ms) {
+    return new Promise(r => setTimeout(r, ms));
+      }
+      wait(ms) {
+    return new Promise(r => setTimeout(r, ms));
+      }
+    
+      async  hello() {
+    await this.fakeop(1000);
+    console.log('test')
+      }
+    
+      * genFunc() {
+    console.log('First');
+    yield; // (A)
+    console.log('Second'); // (B)
+      }
