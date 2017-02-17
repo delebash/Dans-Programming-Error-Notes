@@ -7,19 +7,32 @@ Async/Await
 
 To use asnyc await you need to have es6 generators working -- for evergreen browsers generators are working
 
-You cannot use presets because it tries to convert generators which then require the regeneratorRuntime.
+You cannot use presets because it tries to convert generators which then require the regeneratorRuntime. Instead we have to add the plugins from the es2015,2016,2017 presets manually as in the below .babelrc config
 
+**NOTE:**
+All current browsers support generators and
+Chrome,FF,Safari also support async functions so we can just 
+remove the async transform and use native async functions
 
-Instead we just need to add our plugins manually
+	"transform-async-to-generator",
+    "transform-async-generator-functions"
+
+and replace with  -- the below just allows babel to parse but not transform
+
+	"syntax-async-functions"
+
+For now we are leaving async-tranforms in place to support older browsers
+
+Add plugins manually
 
 	"plugins": [
     "syntax-flow",
     "transform-decorators-legacy",
     "transform-flow-strip-types",
-    "transform-async-to-generator",
-
-    "transform-object-rest-spread",
+    
+	"transform-async-to-generator",
     "transform-async-generator-functions",
+    "transform-object-rest-spread",
     "transform-class-properties",
     "transform-export-extensions",
 
@@ -44,7 +57,7 @@ Instead we just need to add our plugins manually
     "transform-es2015-unicode-regex"
 	]
 
-**For Older browsers:** needing a polyfill then we can use presets and **install generator polyfill** per instructions below
+**For Older browsers:** needing a polyfill for generators then we can use presets and **install generator polyfill** per instructions below
     
 	"presets": [
     ["env", {
@@ -151,3 +164,7 @@ welcome.js
     yield; // (A)
     console.log('Second'); // (B)
       }
+
+See
+https://babeljs.io/docs/plugins/syntax-async-functions/
+
