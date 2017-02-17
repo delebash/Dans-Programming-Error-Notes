@@ -1,7 +1,13 @@
 # Ipad/External pc won't connet using port 63342 #
+
+In Settings/Build/Debugger 
+
 You need to change port number to something else as 63342 is used by all IDE devices as per [article](https://intellij-support.jetbrains.com/hc/en-us/community/posts/207042105-Getting-connection-refused-on-built-in-web-server?page=1#community_comment_115000109110).  No external computers will connect using port 63342 
 
 **Also change debug port number in chrome jetbrains plugin**
+
+Enable allow unsigned requests and allow external connections 
+
 
 
 ## Cmder Open Here ##
