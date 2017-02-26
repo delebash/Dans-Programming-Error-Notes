@@ -88,12 +88,14 @@ Insert
     export class ${StringUtils.removeAndHump(${NAME}, "-")} {
     
     constructor(){
-    
+    #[[$END$]]#
     }
     
     }
 
-Check format code
+
+
+Check format code and live templates to get $END$ to work
 
 
 Create a live template setting/editor/Live Templates
@@ -103,13 +105,13 @@ name = class
 desc = es6 javascript class
 insert
 
-export class NAME {
-
-constructor(){
+    export class NAME {
+    
+    constructor(){
     $END$
-}
-
-}
+    }
+    
+    }
 
 
 At bottom of this box change the **Applicable in** to javascript statement
