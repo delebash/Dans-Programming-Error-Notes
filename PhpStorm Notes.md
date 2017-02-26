@@ -77,10 +77,10 @@ Create a new html template name Aurelia File with .html
 insert 
 
     <template>
-    
+    	    #[[$END$]]#
     </template>
 
-Check format code
+Check format code and live templates to get $END$ to work
 
 Create a new javascript template name Javascript Class
 Insert
