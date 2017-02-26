@@ -65,3 +65,51 @@ Markdown
 goto  Settings > File Types > Find Markdown in the Registered Patterns window delete .md
 
 Then got an md file in your Project Window, right click and choose Fil Association and the Default Program
+
+
+## TEMPLATES ##
+
+Create an aurelia and es6 class file template
+
+Goto default settings/editor/File and Code Templates
+
+Create a new html template name Aurelia File with .html
+insert 
+
+    <template>
+    
+    </template>
+
+Check format code
+
+Create a new javascript template name Javascript Class
+Insert
+
+    export class ${StringUtils.removeAndHump(${NAME}, "-")} {
+    
+    constructor(){
+    
+    }
+    
+    }
+
+Check format code
+
+
+Create a live template setting/editor/Live Templates
+
+under javascript click the plus sing
+name = class
+desc = es6 javascript class
+insert
+
+export class NAME {
+
+constructor(){
+    $END$
+}
+
+}
+
+
+At bottom of this box change the **Applicable in** to javascript statement
