@@ -1,27 +1,18 @@
 # Async/Await #
 
-    npm install babel-preset-env  --save-dev
-
-
+ 
 **For evergreen browsers that already support generators:**
 
-To use asnyc await you need to have es6 generators working -- for evergreen browsers generators are working
+However since we are still using babel we are still using a preset for converting to ES6. The default preset includes `"transform-async-to-generator","transform-async-generator-functions"`  **This will cause an error saying regenerator-runtime is missing** So we just need to install plugins manually instead of using preset.
 
-You cannot use presets because it tries to convert generators which then require the regeneratorRuntime. Instead we have to add the plugins from the es2015,2016,2017 presets manually as in the below .babelrc config
 
-**NOTE:**
-All current browsers support generators and
-Chrome,FF,Safari also support async functions so we can just 
-remove the async transform and use native async functions
+Evergreen install instructions:
 
-	"transform-async-to-generator",
-    "transform-async-generator-functions"
+   `npm install babel-preset-env  --save-dev`
 
-and replace with  -- the below just allows babel to parse but not transform
+Note: we are not actually using the above preset, it is just an easy way to install all plugins we need
 
-	"syntax-async-functions"
-
-For now we are leaving async-tranforms in place to support older browsers
+`"syntax-async-functions"` is used for something can't remember now so just leave out 
 
 Add plugins manually
 
@@ -57,30 +48,18 @@ Add plugins manually
     "transform-es2015-unicode-regex"
 	]
 
-**For Older browsers:** needing a polyfill for generators then we can use presets and **install generator polyfill** per instructions below
-    
-	"presets": [
-    ["env", {
-      "targets": {
-    "browsers": ["last 2 versions"]
-      }
-    }],
-    "stage-1"
-      ],
-
-
-**Generator polyfill** for browsers that do not support generators
+**For Older browsers Install regenerator-runtime polyfill:** 
 
 Install as run-time dependency
 
     npm install regenerator-runtime  --save
 
-Then
+Then in main.js
 
     import regeneratorRuntime from 'regenerator-runtime';
     window.regeneratorRuntime = regeneratorRuntime;
 
-For aurelia-cli you need to add to **aurelia.json**
+For aurelia-cli you also need to add it to **aurelia.json**
 
      {
             "name": "regenerator-runtime",
@@ -89,7 +68,7 @@ For aurelia-cli you need to add to **aurelia.json**
           },
 
 
-Examples:
+**Examples:**
 
 Generator
     
