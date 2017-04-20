@@ -23,7 +23,7 @@ Enable allow unsigned requests and allow external connections
 **Add environmental variable** name: `CMDER_ROOT value:F:\bin\cmder`
 
 
-**Set Shell Path to** `"cmd.exe" /k "%CMDER_ROOT%\vendor\init.bat"`
+**Set Shell Path to** `"cmd.exe" /k ""%CMDER_ROOT%\vendor\init.bat""`
 
 ![](http://i.imgur.com/lOMtWhv.png)
 
