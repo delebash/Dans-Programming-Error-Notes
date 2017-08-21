@@ -21,9 +21,11 @@ Enable allow unsigned requests and allow external connections
 [See](https://github.com/cmderdev/cmder/issues/282#issuecomment-219684282) 
 
 **Add environmental variable** name: `CMDER_ROOT value:F:\bin\cmder`
-
+Windows 10 in search for computer rightclick ThisPC to get to enviromental variables
 
 **Set Shell Path to** `"cmd.exe" /k ""%CMDER_ROOT%\vendor\init.bat""`
+
+"cmd" /k "%CMDER_ROOT%\vendor\init.bat"
 
 ![](http://i.imgur.com/lOMtWhv.png)
 
