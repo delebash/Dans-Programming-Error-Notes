@@ -1,0 +1,1 @@
+x is not repeatable.  This means that you are not binding any data, eventhour you get data back maybe you should bind to data.rows instead of just data
