@@ -12,6 +12,9 @@ Url: localhost:9000
 ## Source Maps ##
 You will not hit break point if your sourcemaps are not configured correctly
 
+## Not hitting breakpoint becuase folder is in subfoler like client ##
+Mark folder as resource root
+
 **Make sure the source path is correct in the gulp write sourcmaps**
 
 In Aurelia Navigation Skeleton tasks/build the     .pipe(sourcemaps.write('.', {includeContent: false, sourceRoot: '../src'}))
